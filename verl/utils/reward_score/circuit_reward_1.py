@@ -6,7 +6,7 @@ from typing import List, Union, Tuple, Optional, Dict, Any
 from openai import OpenAI
 from concurrent.futures import ThreadPoolExecutor
 
-SILICONFLOW_API_KEY = "sk-qqaypygblxgtabhaptwuyvoxhvcloxssoitnwsnrvbusmuod"
+SILICONFLOW_API_KEY = ""
 SILICONFLOW_BASE_URL = "https://api.siliconflow.cn/v1"
 JUDGE_MODEL_NAME = "Qwen/Qwen2.5-72B-Instruct" 
 
