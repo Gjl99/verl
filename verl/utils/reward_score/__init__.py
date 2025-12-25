@@ -102,6 +102,20 @@ def default_compute_score(
         from . import search_r1_like_qa_em
 
         res = search_r1_like_qa_em.compute_score(solution_str, ground_truth)
+    elif data_source == "circuit_dataset":
+        from . import circuit_reward_1
+        data = {
+            "question": extra_info.get("question_text", "") if extra_info else "",
+            "question_type": extra_info.get("question_type", "single_select") if extra_info else "single_select",
+            "answer_text": ground_truth,
+            "explanation_text": extra_info.get("explanation_text", "") if extra_info else "",
+            "language": extra_info.get("language", "en") if extra_info else "en"
+        }
+        
+        format_weight =  0.2
+        accuracy_weight =  0.8
+        length_penalty_weight = 0.0
+        res = circuit_reward_1.compute_score(data, solution_str, format_weight, accuracy_weight, length_penalty_weight)
 
     else:
         raise NotImplementedError(f"Reward function is not implemented for {data_source=}")
